@@ -6,21 +6,6 @@ void main(){
   runApp(AddNumbers());
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body:AddNumbers() ,
-//       ),
-//     );
-//   }
-// }
-
-
-
 class AddNumbers extends StatefulWidget {
   const AddNumbers({super.key});
 
@@ -29,11 +14,15 @@ class AddNumbers extends StatefulWidget {
 }
 
 class _AddNumbersState extends State<AddNumbers> {
-  int thefirstnumber= 7 ; 
-  int thesecondnumber= 10; 
   @override
   Widget build(BuildContext context) {
-  return Column( mainAxisAlignment: MainAxisAlignment.center,
+    return  MaterialApp(
+home: Scaffold(
+  appBar: AppBar(
+    title: Text("ADD NUMBERS"),
+    centerTitle: true,
+  ),
+  body:  Column( mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text("ADD TWO NUMBERS ", style: TextStyle(
             fontSize: 30, fontWeight: FontWeight.bold, 
@@ -61,9 +50,11 @@ class _AddNumbersState extends State<AddNumbers> {
          child: const Text("ADD THE NUMBERS"),)
 
         ],
-      );
+      )
 
-  
-}
+  ,
+),
 
+    );
+  }
 }
