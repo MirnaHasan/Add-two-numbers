@@ -1,5 +1,8 @@
 
 
+import 'dart:developer';// this is library of log
+
+import 'package:add_two_numbers/pageTwo.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,10 +18,32 @@ class WritingName extends StatefulWidget {
 
 class _WritingNameState extends State<WritingName> {
  TextEditingController name = TextEditingController();
+ int count = 0;
+ @override
+  void initState() {
+
+name.text = "your name mirnaaaaaaaaaa";
+log('message initState');
+    // اثناء فتح الشاشة  يتم الاستدعاء
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() {
+// هي اثناء غلق الشاشة 
+    log('message dispose');
+name.dispose();
+
+    // TODO: implement dispose
+    super.dispose();
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    log('message to rebuild method ${count++}');
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar( backgroundColor: Colors.blueGrey,
           title: const Text("writting names", 
@@ -30,7 +55,7 @@ class _WritingNameState extends State<WritingName> {
         centerTitle: true,),
         body: 
          Center(
-          child: Form(
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(
@@ -60,15 +85,27 @@ class _WritingNameState extends State<WritingName> {
                   ),
                 ),
                 MaterialButton( color: Colors.blue,
-                  onPressed: (){     
-             
+                child: const Text("حول الاسم ",)  ,
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PageTwo(),),);     
+                    // Navigator.push(context, MaterialPageRoute(builder: (_) => const PageTwo(),),);
+             // هنا يصير فقط اعادة بناء لدلة build
+             // حتى اخذ النص من التيكست فروم فيلد عندي  كونترول   الي السمه name 
+             // aشوفي وتابعي 
+            //بهاي الطريقة اخذ النصم من التيكست فروم فيلد  واحوله الى سترنك
+// log('message name Log :- ${name.text}');
+// print('message name print :- ${name.text}');
+            
                   },
 
-               
-                
-               
+            
                 ),
-                 Text("$name"),
+                // هنا خطأك ماغيرتي الى سترنك فقط تاابعي
+                 Text(" name is :- ${name.text}",style: const TextStyle(
+                   fontSize: 20,
+                   fontWeight: FontWeight.bold,
+                   color: Colors.indigoAccent,
+                 ),),
               ],
             ),
           ),
